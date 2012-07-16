@@ -4,7 +4,7 @@
 "    https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 call pathogen#infect()
 
-syntax on
+syntax enable
 set t_co=256
 set background=dark
 
