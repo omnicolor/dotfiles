@@ -15,6 +15,9 @@ colorscheme solarized
 " To install fugitive
 " git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 
+" Install Syntastic
+" git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+
 if has('autocmd')
     filetype on
     filetype plugin on
