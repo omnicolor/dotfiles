@@ -63,9 +63,7 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
+inoremap jj <ESC>
 
 autocmd BufRead,BufNewFile * set formatoptions-=cro
 :autocmd FileType php noremap ,l :w!<CR>:!clear;/usr/local/bin/php -l %<CR>
