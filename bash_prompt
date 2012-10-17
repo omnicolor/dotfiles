@@ -1,0 +1,123 @@
+# Apologies to whoever originally wrote this script. I got it from somewhere and
+# didn't keep track of where. I've made a bunch of changes to it which makes it
+# really hard to tell what's mine and what's not. If you wrote it and want
+# credit where credit is due, let me know.
+#
+# This changes the prompt when you're in a git repository:
+# foo-repo(123) /bar/mitz$
+# where foo-repo is the repository name, 1 (in yellow) is the number of files
+# currently changed but not commited, 2 (in green) is the number of files
+# committed but not pushed, and 3 (in red) is the number of changes that have
+# been pushed upstream that you haven't pulled. bar and mitz show that you've
+# gone down two directories from the root of the repository. It will show up to
+# three directories deep.
+
+reset='\[\e[00m\]'
+bold='\[\e[01m\]'
+red='\[\e[31m\]'
+green='\[\e[32m\]'
+orange='\[\e[33m\]'
+blue='\[\e[34m\]'
+purple='\[\e[35m\]'
+cyan='\[\e[36m\]'
+gray='\[\e[37m\]'
+bright='\[\e[39m\]'
+
+function short_pwd {
+  if [ $GIT -ne 0 ]; then
+    pwd=$(pwd | sed -e 's/\/Users//'| sed -e 's/\/Omni//')
+  else
+    pwd=$(pwd)
+  fi
+  first=$(basename $pwd)
+  rest=$(dirname $pwd)
+  second=$(basename $rest)
+  rest=$(dirname $rest)
+  if [ 'Sites' = $second ]; then
+    first=$(basename $rest)
+    rest=$(dirname $pwd)
+    second=$(basename $rest)
+    rest=$(dirname $rest)
+  fi
+  third=$(basename $rest)
+  rest=$(dirname $rest)
+  if [ 'Sites' = $third ]; then
+    second="/"
+  fi
+  fourth=$(basename $rest)
+  if [ 'Sites' = $fourth ]; then
+    third="/"
+  fi
+
+  if [ $first = "/" ]; then
+      echo -n "/"
+  elif [ $second = "/" ]; then
+      echo -n "/$first"
+  elif [ $third = "/" ]; then
+    echo -n "/$second/$first"
+  else
+    echo -n "$third/$second/$first"
+  fi
+}
+
+function myprompt {
+  git_top=$(git rev-parse --show-toplevel 2>/dev/null)
+
+  if [ $? -ne 0 ]; then
+      git_top=""
+      GIT=0
+  else
+      git_top=$(basename $git_top)
+      GIT=1
+  fi
+
+  if [ $GIT -ne 0 ]; then
+      git_branch=$(git symbolic-ref HEAD 2>/dev/null)
+      if [ $? -ne 0 ]; then
+          git_branch=""
+      fi
+
+      if [ $git_branch = "refs/heads/master" ]; then
+          branch=""
+      else
+          branch=" $bold$red$(basename $git_branch)$reset"
+      fi
+  fi
+
+  colordir="${bold}${blue}$(short_pwd)"
+  if [ $GIT -ne 0 ]; then
+      # We're in a git repo
+      EDITS=$(git status -s | wc -l | tr -d ' ')
+      if [ $EDITS -ne 0 ]; then
+          edits="$bold$orange$EDITS$reset"
+      else
+          edits="${orange}0$reset"
+      fi
+      AHEAD=$(git rev-list origin..HEAD 2>/dev/null | wc -l | tr -d ' ')
+      BEHIND=$(git rev-list HEAD..origin 2>/dev/null | wc -l | tr -d ' ')
+      if [ $AHEAD -gt 9 ]; then
+          AHEAD="$bold$green+$reset"
+      elif [ $AHEAD -ne 0 ]; then
+          AHEAD="$bold$green$AHEAD$reset"
+      else
+          AHEAD="${green}0"
+      fi
+      if [ $BEHIND -gt 9 ]; then
+          BEHIND="$bold${red}+"
+      elif [ $BEHIND -ne 0 ]; then
+          BEHIND="$bold$red$BEHIND"
+      else
+          BEHIND="${red}0"
+      fi
+      git="${bold}${green}$git_top$gray($edits$AHEAD$BEHIND"
+      PS1="$git$branch$gray) $colordir$reset\$ "
+  else
+      PS1="$colordir$reset\$ "
+  fi
+  if [ $VIRTUAL_ENV ]; then
+      PS1="$bold$cyan$(basename $VIRTUAL_ENV)$reset $PS1"
+  fi
+}
+
+unset PS1
+PROMPT_COMMAND=myprompt
