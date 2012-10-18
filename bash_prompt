@@ -27,7 +27,7 @@ function short_pwd {
   if [ $GIT -ne 0 ]; then
     pwd=$(pwd | sed -e 's/\/Users//'| sed -e 's/\/Omni//')
   else
-    pwd=$(pwd)
+    pwd=$(pwd | sed -e 's/ /_/g')
   fi
   first=$(basename $pwd)
   rest=$(dirname $pwd)
