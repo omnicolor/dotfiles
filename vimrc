@@ -19,11 +19,9 @@ colorscheme solarized
 " Install Syntastic
 " git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
 
-if has('autocmd')
-    filetype on
-    filetype plugin on
-    filetype indent on
-endif
+filetype on
+filetype plugin on
+filetype indent on
 
 set nocompatible
 set modelines=0
