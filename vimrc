@@ -92,6 +92,9 @@ nnoremap <F9> :make<CR><CR>:cwindow<CR><C-w><C-w>
 " Make F6 unit test the project.
 nnoremap <F6> :!phing test<CR>
 
+" Prettier linewrap.
+set showbreak=↪
+
 " Read your local vim stuff.
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
