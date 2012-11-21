@@ -89,11 +89,8 @@ set showmode
 :set errorformat=%m\ in\ %f\ on\ line\ %l
 nnoremap <F9> :make<CR><CR>:cwindow<CR><C-w><C-w>
 
-" Make F5 build the project.
-nnoremap <F5> :!ant build<CR>
-
 " Make F6 unit test the project.
-nnoremap <F6> :!ant test-all<CR>
+nnoremap <F6> :!phing test<CR>
 
 " Read your local vim stuff.
 if filereadable(glob("~/.vimrc.local"))
