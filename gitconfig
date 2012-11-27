@@ -28,7 +28,7 @@
     changed = green
     untracked = cyan
 [core]
-    editor = /usr/bin/vi
+    editor = /usr/bin/vim
     excludesfile = ~/.gitignore
 [pull]
     default = current
