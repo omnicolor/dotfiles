@@ -1,0 +1,39 @@
+[alias]
+    # Diff last commit
+    dlc = diff --cached HEAD^
+    fahqit = reset --hard HEAD
+    lasttag = describe --tags --abbrev=0
+    le = log --oneline --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    s = status -s
+    st = status
+	who = !echo \"== Commits by Author:\\n`git shortlog -s -n`\\n\"
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+	ui = true
+[color "branch"]
+    current = red reverse
+    local = blue
+    remote = green
+[color "diff"]
+    frag = magenta
+    meta = yellow
+    new = green
+    old = red
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[core]
+    editor = /usr/bin/vi
+	excludesfile = ~/.gitignore
+[pull]
+    default = current
+[push]
+    default = tracking
+[user]
+	email = oadams@isightpartners.com
+	name = Omni Adams
