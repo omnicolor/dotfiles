@@ -8,12 +8,12 @@
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     s = status -s
     st = status
-	who = !echo \"== Commits by Author:\\n`git shortlog -s -n`\\n\"
+    who = !echo \"== Commits by Author:\\n`git shortlog -s -n`\\n\"
 [color]
     branch = auto
     diff = auto
     status = auto
-	ui = true
+    ui = true
 [color "branch"]
     current = red reverse
     local = blue
@@ -29,11 +29,11 @@
     untracked = cyan
 [core]
     editor = /usr/bin/vi
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [pull]
     default = current
 [push]
     default = tracking
 [user]
-	email = oadams@isightpartners.com
-	name = Omni Adams
+    email = oadams@isightpartners.com
+    name = Omni Adams
