@@ -1,7 +1,7 @@
 # .bash_profile
 
 # Automated committing to git.
-alias pushit='git pull && phing test && phing phpcs && git push'
+alias pushit='git pull --rebase && phing test && phing phpcs && git push'
 
 # Make ls pretty.
 alias ls='ls -FG'
