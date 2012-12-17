@@ -6,6 +6,7 @@
     le = log --oneline --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    p = pull --rebase
     s = status -s
     st = status
     who = !echo \"== Commits by Author:\\n`git shortlog -s -n`\\n\"
