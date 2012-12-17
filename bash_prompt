@@ -84,6 +84,10 @@ function myprompt {
       fi
   fi
 
+  hostname=""
+  if [ "$SSH_CONNECTION" ]; then
+      hostname="$(hostname | cut -f1 -d'.') "
+  fi
   colordir="${bold}${blue}$(short_pwd)"
   if [ $GIT -ne 0 ]; then
       # We're in a git repo
@@ -117,6 +121,7 @@ function myprompt {
   if [ $VIRTUAL_ENV ]; then
       PS1="$bold$cyan$(basename $VIRTUAL_ENV)$reset $PS1"
   fi
+  PS1="$hostname$PS1"
 }
 
 unset PS1
