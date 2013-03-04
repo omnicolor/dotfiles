@@ -60,27 +60,54 @@ function short_pwd {
     fi
 }
 
-function myprompt {
+# Return the type of directory we're in
+# 0 Means not a git repository
+# 1 Means it is a normal repository
+# 2 Means it's a bare repository
+function isGit {
     git_top=$(git rev-parse --show-toplevel 2>/dev/null)
 
     if [ $? -ne 0 ]; then
-        git_top=""
-        GIT=0
-    else
-        git_top=$(basename $git_top)
-        GIT=1
+        echo "0"
+        return
     fi
+    git_top=$(basename $git_top 2>/dev/null)
+
+    if [ $? -ne 0 ]; then
+        echo "2"
+        return
+    fi
+    echo "1"
+    return
+}
+
+
+function myprompt {
+    GIT=$(isGit)
 
     if [ $GIT -ne 0 ]; then
-        git_branch=$(git symbolic-ref HEAD 2>/dev/null)
+        git_top=$(git rev-parse --show-toplevel 2>/dev/null)
         if [ $? -ne 0 ]; then
-            git_branch=""
+            git_top=$(git rev-parse --git-dir)
+        else
+            git_top=$(basename $git_top 2>/dev/null)
+            if [ $? -ne 0 ]; then
+                git_top=$(basename `pwd`)
+            fi
         fi
 
-        if [ $git_branch = "refs/heads/master" ]; then
-            branch=""
-        else
-            branch=" $bold$red$(basename $git_branch)$reset"
+        git_branch=""
+        if [ $GIT -ne 2 ]; then
+            git_branch=$(git symbolic-ref HEAD 2>/dev/null)
+            if [ $? -ne 0 ]; then
+                git_branch=""
+            fi
+
+            if [ $git_branch = "refs/heads/master" ]; then
+                branch=""
+            else
+                branch=" $bold$red$(basename $git_branch)$reset"
+            fi
         fi
     fi
 
@@ -89,7 +116,8 @@ function myprompt {
         hostname="$(hostname | cut -f1 -d'.') "
     fi
     colordir="${bold}${blue}$(short_pwd)"
-    if [ $GIT -ne 0 ]; then
+
+    if [ $GIT -eq 1 ]; then
         # We're in a git repo
         EDITS=$(git status -s | wc -l | tr -d ' ')
         if [ $EDITS -ne 0 ]; then
@@ -115,6 +143,8 @@ function myprompt {
         fi
         git="${bold}${green}$git_top$gray($edits$AHEAD$BEHIND"
         PS1="$git$branch$gray) $colordir$reset\$ "
+    elif [ $GIT -eq 2 ]; then
+        PS1="${bold}${green}$git_top$gray(bare) $colordir$reset\$ "
     else
         PS1="$colordir$reset\$ "
     fi
