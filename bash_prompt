@@ -24,104 +24,104 @@ gray='\[\e[37m\]'
 bright='\[\e[39m\]'
 
 function short_pwd {
-  if [ $GIT -ne 0 ]; then
-    pwd=$(pwd | sed -e 's/\/Users//' | sed -e 's/\/Omni//' | sed -e 's/\/home//' | sed -e 's/\/oadams//')
-  else
-    pwd=$(pwd | sed -e 's/ /_/g')
-  fi
-  first=$(basename $pwd)
-  rest=$(dirname $pwd)
-  second=$(basename $rest)
-  rest=$(dirname $rest)
-  if [ 'Sites' = $second -o 'code' = $second ]; then
-    first=$(basename $rest)
+    if [ $GIT -ne 0 ]; then
+        pwd=$(pwd | sed -e 's/\/Users//' | sed -e 's/\/Omni//' | sed -e 's/\/home//' | sed -e 's/\/oadams//')
+    else
+        pwd=$(pwd | sed -e 's/ /_/g')
+    fi
+    first=$(basename $pwd)
     rest=$(dirname $pwd)
     second=$(basename $rest)
     rest=$(dirname $rest)
-  fi
-  third=$(basename $rest)
-  rest=$(dirname $rest)
-  if [ 'Sites' = $third -o 'code' = $third ]; then
-    second="/"
-  fi
-  fourth=$(basename $rest)
-  if [ 'Sites' = $fourth -o 'code' = $fourth ]; then
-    third="/"
-  fi
+    if [ 'Sites' = $second -o 'code' = $second ]; then
+        first=$(basename $rest)
+        rest=$(dirname $pwd)
+        second=$(basename $rest)
+        rest=$(dirname $rest)
+    fi
+    third=$(basename $rest)
+    rest=$(dirname $rest)
+    if [ 'Sites' = $third -o 'code' = $third ]; then
+        second="/"
+    fi
+    fourth=$(basename $rest)
+    if [ 'Sites' = $fourth -o 'code' = $fourth ]; then
+        third="/"
+    fi
 
-  if [ $first = "/" ]; then
-      echo -n "/"
-  elif [ $second = "/" ]; then
-      echo -n "/$first"
-  elif [ $third = "/" ]; then
-    echo -n "/$second/$first"
-  else
-    echo -n "$third/$second/$first"
-  fi
+    if [ $first = "/" ]; then
+        echo -n "/"
+    elif [ $second = "/" ]; then
+        echo -n "/$first"
+    elif [ $third = "/" ]; then
+        echo -n "/$second/$first"
+    else
+        echo -n "$third/$second/$first"
+    fi
 }
 
 function myprompt {
-  git_top=$(git rev-parse --show-toplevel 2>/dev/null)
+    git_top=$(git rev-parse --show-toplevel 2>/dev/null)
 
-  if [ $? -ne 0 ]; then
-      git_top=""
-      GIT=0
-  else
-      git_top=$(basename $git_top)
-      GIT=1
-  fi
+    if [ $? -ne 0 ]; then
+        git_top=""
+        GIT=0
+    else
+        git_top=$(basename $git_top)
+        GIT=1
+    fi
 
-  if [ $GIT -ne 0 ]; then
-      git_branch=$(git symbolic-ref HEAD 2>/dev/null)
-      if [ $? -ne 0 ]; then
-          git_branch=""
-      fi
+    if [ $GIT -ne 0 ]; then
+        git_branch=$(git symbolic-ref HEAD 2>/dev/null)
+        if [ $? -ne 0 ]; then
+            git_branch=""
+        fi
 
-      if [ $git_branch = "refs/heads/master" ]; then
-          branch=""
-      else
-          branch=" $bold$red$(basename $git_branch)$reset"
-      fi
-  fi
+        if [ $git_branch = "refs/heads/master" ]; then
+            branch=""
+        else
+            branch=" $bold$red$(basename $git_branch)$reset"
+        fi
+    fi
 
-  hostname=""
-  if [ "$SSH_CONNECTION" ]; then
-      hostname="$(hostname | cut -f1 -d'.') "
-  fi
-  colordir="${bold}${blue}$(short_pwd)"
-  if [ $GIT -ne 0 ]; then
-      # We're in a git repo
-      EDITS=$(git status -s | wc -l | tr -d ' ')
-      if [ $EDITS -ne 0 ]; then
-          edits="$bold$orange$EDITS$reset"
-      else
-          edits="${orange}0$reset"
-      fi
-      AHEAD=$(git rev-list origin..HEAD 2>/dev/null | wc -l | tr -d ' ')
-      BEHIND=$(git rev-list HEAD..origin 2>/dev/null | wc -l | tr -d ' ')
-      if [ $AHEAD -gt 9 ]; then
-          AHEAD="$bold$green+$reset"
-      elif [ $AHEAD -ne 0 ]; then
-          AHEAD="$bold$green$AHEAD$reset"
-      else
-          AHEAD="${green}0"
-      fi
-      if [ $BEHIND -gt 9 ]; then
-          BEHIND="$bold${red}+"
-      elif [ $BEHIND -ne 0 ]; then
-          BEHIND="$bold$red$BEHIND"
-      else
-          BEHIND="${red}0"
-      fi
-      git="${bold}${green}$git_top$gray($edits$AHEAD$BEHIND"
-      PS1="$git$branch$gray) $colordir$reset\$ "
-  else
-      PS1="$colordir$reset\$ "
-  fi
-  if [ $VIRTUAL_ENV ]; then
-      PS1="$bold$cyan$(basename $VIRTUAL_ENV)$reset $PS1"
-  fi
-  PS1="$hostname$PS1"
+    hostname=""
+    if [ "$SSH_CONNECTION" ]; then
+        hostname="$(hostname | cut -f1 -d'.') "
+    fi
+    colordir="${bold}${blue}$(short_pwd)"
+    if [ $GIT -ne 0 ]; then
+        # We're in a git repo
+        EDITS=$(git status -s | wc -l | tr -d ' ')
+        if [ $EDITS -ne 0 ]; then
+            edits="$bold$orange$EDITS$reset"
+        else
+            edits="${orange}0$reset"
+        fi
+        AHEAD=$(git rev-list origin..HEAD 2>/dev/null | wc -l | tr -d ' ')
+        BEHIND=$(git rev-list HEAD..origin 2>/dev/null | wc -l | tr -d ' ')
+        if [ $AHEAD -gt 9 ]; then
+            AHEAD="$bold$green+$reset"
+        elif [ $AHEAD -ne 0 ]; then
+            AHEAD="$bold$green$AHEAD$reset"
+        else
+            AHEAD="${green}0"
+        fi
+        if [ $BEHIND -gt 9 ]; then
+            BEHIND="$bold${red}+"
+        elif [ $BEHIND -ne 0 ]; then
+            BEHIND="$bold$red$BEHIND"
+        else
+            BEHIND="${red}0"
+        fi
+        git="${bold}${green}$git_top$gray($edits$AHEAD$BEHIND"
+        PS1="$git$branch$gray) $colordir$reset\$ "
+    else
+        PS1="$colordir$reset\$ "
+    fi
+    if [ $VIRTUAL_ENV ]; then
+        PS1="$bold$cyan$(basename $VIRTUAL_ENV)$reset $PS1"
+    fi
+    PS1="$hostname$PS1"
 }
 
 unset PS1
