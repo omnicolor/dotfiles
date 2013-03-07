@@ -1,4 +1,6 @@
 [alias]
+    ci = commit
+    co = checkout
     # Diff last commit
     dlc = diff --cached HEAD^
     fahqit = reset --hard HEAD
@@ -14,7 +16,9 @@
     branch = auto
     diff = auto
     status = auto
+    interactive = auto
     ui = true
+    pager = true
 [color "branch"]
     current = red reverse
     local = blue
@@ -31,6 +35,8 @@
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    pager = less
 [pull]
     default = current
 [push]

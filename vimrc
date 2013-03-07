@@ -83,7 +83,9 @@ autocmd BufWinLeave * call clearmatches()
 autocmd Syntax * syn match ExtraWhitespace /\s\+$/
 
 " Highlight text past 80 characters.
-set colorcolumn=80
+if exists('+colorcolumn')
+    set colorcolumn=80
+endif
 
 " Make F2 a nice paste format.
 nnoremap <F2> :set invpaste paste?<CR>
