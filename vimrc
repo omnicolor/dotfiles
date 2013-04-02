@@ -12,7 +12,8 @@ set background=dark
 " To install solarized:
 " git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
 " To install wombat:
-" wget -O ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
+" mkdir ~/.vim/colors
+" curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
 colorscheme wombat
 
 " To install fugitive
