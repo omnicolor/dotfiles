@@ -104,6 +104,9 @@ nnoremap <F6> :!phing test<CR>
 " Prettier linewrap.
 set showbreak=↪
 
+" Write as root.
+cnoremap w!! w !sudo tee % >/dev/null
+
 " Read your local vim stuff.
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
