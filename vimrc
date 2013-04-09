@@ -73,6 +73,9 @@ autocmd BufRead,BufNewFile * set formatoptions-=cro
 " Trim trailing whitespace automatically when saved.
 autocmd BufWritePre * :%s/\s\+$//e
 
+" Restore position when reopening file.
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " Highlight any trailing whitespace.
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
