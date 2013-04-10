@@ -91,10 +91,10 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
-" Make F2 a nice paste format.
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-set showmode
+" Make <ins> a nice paste format.
+set pastetoggle=<ins>
+nnoremap <silent> <ins> :setlocal paste!<CR>i
+autocmd InsertLeave <buffer> se nopaste
 
 " Make F9 lint a PHP file.
 :set makeprg=php\ -ln\ %
