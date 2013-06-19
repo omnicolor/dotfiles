@@ -4,7 +4,7 @@
 alias pushit='git pull --rebase && phing test && git push'
 
 # Make ls pretty.
-alias ls='ls -FG --color'
+alias ls='ls -F --color'
 
 # Use vi whenever possible.
 export EDITOR=vi
