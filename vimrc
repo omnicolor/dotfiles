@@ -68,6 +68,7 @@ nnoremap <leader><space> :noh<cr>
 let mapleader = ","
 let maplocalleader = ","
 
+" Hit jj to get out of insert mode.
 inoremap jj <ESC>
 
 autocmd BufRead,BufNewFile * set formatoptions-=cro
