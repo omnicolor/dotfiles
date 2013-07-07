@@ -65,6 +65,9 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
+let mapleader = ","
+let maplocalleader = ","
+
 inoremap jj <ESC>
 
 autocmd BufRead,BufNewFile * set formatoptions-=cro
