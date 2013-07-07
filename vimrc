@@ -118,6 +118,10 @@ set listchars=tab:▸\ ,eol:¬
 " Write as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
+" Highlight the current line.
+autocmd InsertLeave * set nocursorline
+autocmd InsertEnter * set cursorline
+
 " Read your local vim stuff.
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
