@@ -15,7 +15,7 @@ export HISTCONTROL=ignoredups:ignorespace
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-# append to the history file, don't overwrite it
+# Append to the history file, don't overwrite it.
 shopt -s histappend
 
 # Get the aliases and functions.

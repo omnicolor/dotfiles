@@ -86,6 +86,7 @@ function myprompt {
     GIT=$(isGit)
 
     if [ $GIT -ne 0 ]; then
+        # Show a fancy git prompt.
         git_top=$(git rev-parse --show-toplevel 2>/dev/null)
         if [ $? -ne 0 ]; then
             git_top=$(git rev-parse --git-dir)
@@ -113,12 +114,13 @@ function myprompt {
 
     hostname=""
     if [ "$SSH_CONNECTION" ]; then
+        # We're on a different system than normal, add the hostname.
         hostname="$(hostname | cut -f1 -d'.') "
     fi
     colordir="${bold}${blue}$(short_pwd)"
 
     if [ $GIT -eq 1 ]; then
-        # We're in a git repo
+        # We're in a normal git repository.
         EDITS=$(git status -s | wc -l | tr -d ' ')
         if [ $EDITS -ne 0 ]; then
             edits="$bold$orange$EDITS$reset"
@@ -144,6 +146,7 @@ function myprompt {
         git="${bold}${green}$git_top$gray($edits$AHEAD$BEHIND"
         PS1="$git$branch$gray) $colordir$reset\$ "
     elif [ $GIT -eq 2 ]; then
+        # We're in a bare git repository.
         PS1="${bold}${green}$git_top$gray(bare) $colordir$reset\$ "
     else
         PS1="$colordir$reset\$ "
