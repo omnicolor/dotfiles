@@ -6,9 +6,9 @@ alias pushit='git pull --rebase && phing test && git push'
 # Make ls pretty.
 alias ls='ls -F --color'
 
-# Use vi whenever possible.
-export EDITOR=vi
-set -i vi
+# Use vim whenever possible.
+export EDITOR=vim
+set -i vim
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL=ignoredups:ignorespace
