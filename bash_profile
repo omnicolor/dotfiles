@@ -18,8 +18,6 @@ export HISTFILESIZE=2000
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-export PATH=$PATH:$HOME/bin
-
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
