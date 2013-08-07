@@ -25,7 +25,8 @@ bright='\[\e[39m\]'
 
 function short_pwd {
     if [ $GIT -ne 0 ]; then
-        pwd=$(pwd | sed -e 's/\/omni//' | sed -e 's/\/home//')
+        username=`whoami`
+        pwd=$(pwd | sed -e "s/\/$username//" | sed -e 's/\/home//' | sed -e 's/\/Users//')
     else
         pwd=$(pwd | sed -e 's/ /_/g')
     fi
