@@ -118,10 +118,10 @@ function myprompt {
         # We're on a different system than normal, add the hostname.
         hostname="$(hostname | cut -f1 -d'.') "
     fi
-    colordir="${bold}${blue}$(short_pwd)"
 
     if [ $GIT -eq 1 ]; then
         # We're in a normal git repository.
+        colordir="${bold}${blue}$(short_pwd)"
         EDITS=$(git status -s | wc -l | tr -d ' ')
         if [ $EDITS -ne 0 ]; then
             edits="$bold$orange$EDITS$reset"
@@ -148,8 +148,10 @@ function myprompt {
         PS1="$git$branch$gray) $colordir$reset\$ "
     elif [ $GIT -eq 2 ]; then
         # We're in a bare git repository.
+        colordir="${bold}${blue}$(short_pwd)"
         PS1="${bold}${green}$git_top$gray(bare) $colordir$reset\$ "
     else
+        colordir="${bold}${blue}$(pwd)"
         PS1="$colordir$reset\$ "
     fi
     if [ $VIRTUAL_ENV ]; then
