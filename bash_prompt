@@ -3,6 +3,8 @@
 # really hard to tell what's mine and what's not. If you wrote it and want
 # credit where credit is due, let me know.
 #
+# Subversion prompt code was adapted from https://gist.github.com/woods/31967
+#
 # This changes the prompt when you're in a git repository:
 # foo-repo(123) /bar/mitz$
 # where foo-repo is the repository name, 1 (in yellow) is the number of files
@@ -11,6 +13,14 @@
 # been pushed upstream that you haven't pulled. bar and mitz show that you've
 # gone down two directories from the root of the repository. It will show up to
 # three directories deep.
+#
+# In a Subversion repository, it changes it to:
+# (1 trunk) /bar/mitz$
+# where 1 (in yellow) shows changes that haven't been committed, trunk is the
+# current branch, and bar and mitz show that you've gone down two directories.
+# Note that the change number shows changes for the part of the tree that you're
+# in, not the whole checkout. In the above example, that means there's one edit
+# in the tree starting at bar/mitz, *not* from /.
 
 reset='\[\e[00m\]'
 bold='\[\e[01m\]'
@@ -24,11 +34,11 @@ gray='\[\e[37m\]'
 bright='\[\e[39m\]'
 
 # Chop up the working directory to make it prettier
-# In a git repository, returns up to the last three subdirectories from the
-# repo's root.
+# In a git or subversion repository, returns up to the last three subdirectories
+# from the repo's root.
 # Otherwise returns up to the last three subdirectories of the whole path.
 function short_pwd {
-    if [ $GIT -ne 0 ]; then
+    if [ $GIT -ne 0 -o $SVN -ne 0 ]; then
         username=`whoami`
         pwd=$(pwd | sed -e "s/\/$username//" | sed -e 's/\/home//' | sed -e 's/\/Users//')
     else
@@ -86,9 +96,20 @@ function isGit {
     return
 }
 
+# Returns whether the directory is a SVN repository
+# 0 Means we're not
+# 1 Means we are
+function isSvn {
+    if [ -d '.svn' ]; then
+        echo "1"
+        return
+    fi
+    echo "0"
+}
 
 # Shiny up the prompt
 function myprompt {
+    SVN=$(isSvn)
     GIT=$(isGit)
 
     if [ $GIT -ne 0 ]; then
@@ -115,6 +136,21 @@ function myprompt {
             else
                 branch=" $bold$red$(basename $git_branch)$reset"
             fi
+        else
+            branch=" $bold${red}bare$reset"
+        fi
+    elif [ $SVN -ne 0 ]; then
+        # Show a fancy Subversion prompt.
+        svn_info="$(svn info | egrep '^URL: ' 2> /dev/null)"
+        #branchRegex="^URL: .*/(branches)/([^/]+)"
+        branchRegex="^URL: .*/(branches)/(.+)"
+        trunk_pattern="^URL: .*/trunk(/.*)?$"
+        if [[ ${svn_info} =~ $branchRegex ]]; then
+            branch=`echo ${BASH_REMATCH[2]}`
+        elif [[ ${svn_info} =~ $trunk_pattern ]]; then
+            branch='trunk'
+        else
+            branch=''
         fi
     fi
 
@@ -151,6 +187,14 @@ function myprompt {
         fi
         git="${bold}${green}$git_top$gray($edits$AHEAD$BEHIND"
         PS1="$git$branch$gray) $colordir$reset\$ "
+    elif [ $SVN -ne 0 ]; then
+        dir=$(short_pwd)
+        if [ $dir != "/" ]; then
+            branch=`echo $branch | sed -e "s#$dir##"`
+        fi
+        EDITS=`svn st | wc -l | sed -e 's/ *//g'`
+        colordir="${bold}${blue}$dir"
+        PS1="$gray($bold$orange$EDITS$reset $red$branch$gray) $colordir$reset\$ "
     else
         colordir="${bold}${blue}$(pwd)"
         PS1="$colordir$reset\$ "
