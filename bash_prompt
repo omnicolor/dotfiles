@@ -23,6 +23,10 @@ cyan='\[\e[36m\]'
 gray='\[\e[37m\]'
 bright='\[\e[39m\]'
 
+# Chop up the working directory to make it prettier
+# In a git repository, returns up to the last three subdirectories from the
+# repo's root.
+# Otherwise returns up to the last three subdirectories of the whole path.
 function short_pwd {
     if [ $GIT -ne 0 ]; then
         username=`whoami`
@@ -83,6 +87,7 @@ function isGit {
 }
 
 
+# Shiny up the prompt
 function myprompt {
     GIT=$(isGit)
 
