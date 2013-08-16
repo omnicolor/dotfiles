@@ -142,7 +142,6 @@ function myprompt {
     elif [ $SVN -ne 0 ]; then
         # Show a fancy Subversion prompt.
         svn_info="$(svn info | egrep '^URL: ' 2> /dev/null)"
-        #branchRegex="^URL: .*/(branches)/([^/]+)"
         branchRegex="^URL: .*/(branches)/(.+)"
         trunk_pattern="^URL: .*/trunk(/.*)?$"
         if [[ ${svn_info} =~ $branchRegex ]]; then
