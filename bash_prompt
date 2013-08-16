@@ -145,11 +145,11 @@ function myprompt {
         branch_regex="^URL: .*/(branches)/(.+)"
         trunk_pattern="^URL: .*/trunk(/.*)?$"
         project_pattern="^URL: .*/(projects)/(.+)"
-        if [[ ${svn_info} =~ $branch_regex ]]; then
+        if [[ $svn_info =~ $branch_regex ]]; then
             branch=`echo ${BASH_REMATCH[2]}`
-        elif [[ ${svn_info} =~ $project_pattern ]]; then
+        elif [[ $svn_info =~ $project_pattern ]]; then
             branch=`echo ${BASH_REMATCH[2]}`
-        elif [[ ${svn_info} =~ $trunk_pattern ]]; then
+        elif [[ $svn_info =~ $trunk_pattern ]]; then
             branch='trunk'
         else
             branch=''
