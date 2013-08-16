@@ -142,10 +142,10 @@ function myprompt {
     elif [ $SVN -ne 0 ]; then
         # Show a fancy Subversion prompt.
         svn_info="$(svn info | egrep '^URL: ' 2> /dev/null)"
-        branch_regex="^URL: .*/(branches)/(.+)"
+        branch_pattern="^URL: .*/(branches)/(.+)"
         trunk_pattern="^URL: .*/trunk(/.*)?$"
         project_pattern="^URL: .*/(projects)/(.+)"
-        if [[ $svn_info =~ $branch_regex ]]; then
+        if [[ $svn_info =~ $branch_pattern ]]; then
             branch=`echo ${BASH_REMATCH[2]}`
         elif [[ $svn_info =~ $project_pattern ]]; then
             branch=`echo ${BASH_REMATCH[2]}`
