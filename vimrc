@@ -19,9 +19,6 @@ colorscheme wombat
 " To install fugitive
 " git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 
-" Install Syntastic
-" git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
-
 filetype on
 filetype plugin on
 filetype indent on
