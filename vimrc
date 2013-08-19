@@ -16,9 +16,6 @@ set background=dark
 " curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
 colorscheme wombat
 
-" To install fugitive
-" git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
-
 filetype on
 filetype plugin on
 filetype indent on
