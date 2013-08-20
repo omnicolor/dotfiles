@@ -98,11 +98,6 @@ set pastetoggle=<ins>
 nnoremap <silent> <ins> :setlocal paste!<CR>i
 autocmd InsertLeave <buffer> se nopaste
 
-" Make F9 lint a PHP file.
-:set makeprg=php\ -ln\ %
-:set errorformat=%m\ in\ %f\ on\ line\ %l
-nnoremap <F9> :make<CR><CR>:cwindow<CR><C-w><C-w>
-
 " Make F6 unit test the project.
 nnoremap <F6> :!phing test<CR>
 
