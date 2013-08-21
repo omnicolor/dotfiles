@@ -57,7 +57,6 @@ set smartcase
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
 
 let mapleader = ","
 let maplocalleader = ","
@@ -69,6 +68,9 @@ autocmd BufRead,BufNewFile * set formatoptions-=cro
 
 " ,l to lint a PHP file.
 :autocmd FileType php noremap <leader>l :w!<CR>:!clear;/usr/local/bin/php -l %<CR>
+
+" Leader-space to clear highlighted search.
+nnoremap <leader><space> :noh<cr>
 
 " Trim trailing whitespace automatically when saved.
 autocmd BufWritePre * :%s/\s\+$//e
