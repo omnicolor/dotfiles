@@ -111,13 +111,13 @@ set listchars=tab:▸\ ,eol:¬
 " Write as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Read your local vim stuff.
-if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
-
 " Easier navigation between split windows.
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+" Read your local vim stuff.
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
