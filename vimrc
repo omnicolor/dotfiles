@@ -11,7 +11,9 @@ set background=dark
 " To install wombat:
 " mkdir ~/.vim/colors
 " curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
-colorscheme wombat
+if filereadable(glob("~/.vim/colors/wombat.vim"))
+    colorscheme wombat
+endif
 
 filetype on
 filetype plugin on
