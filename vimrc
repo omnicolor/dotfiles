@@ -68,7 +68,7 @@ inoremap jj <ESC>
 autocmd BufRead,BufNewFile * set formatoptions-=cro
 
 " ,l to lint a PHP file.
-:autocmd FileType php noremap ,l :w!<CR>:!clear;/usr/local/bin/php -l %<CR>
+:autocmd FileType php noremap <leader>l :w!<CR>:!clear;/usr/local/bin/php -l %<CR>
 
 " Trim trailing whitespace automatically when saved.
 autocmd BufWritePre * :%s/\s\+$//e
