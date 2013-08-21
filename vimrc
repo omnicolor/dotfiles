@@ -4,13 +4,10 @@
 "    https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 call pathogen#infect()
 
-let g:solarized_termcolors=256
 syntax enable
 set t_co=256
 set background=dark
 
-" To install solarized:
-" git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
 " To install wombat:
 " mkdir ~/.vim/colors
 " curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
