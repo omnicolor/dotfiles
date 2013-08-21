@@ -116,34 +116,6 @@ if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
 
-" Split window into columns
-" From: https://coderwall.com/p/suj3fq
-function! SplitByColumnSize(col)
-    let l:s_s = &nu ? a:col + &numberwidth : a:col
-    let l:s_t = winwidth(0) / l:s_s
-    let l:s_c = 1
-
-    " Split window s_t times
-    while l:s_c < l:s_t
-        vne
-        wincmd w
-        let l:s_c = l:s_c + 1
-    endwhile
-
-    wincmd H
-
-    let l:s_c = 1
-
-    " Resize splits
-    while l:s_c < l:s_t
-        exe 'vert resize '.l:s_s
-        wincmd w
-        let l:s_c = l:s_c + 1
-    endwhile
-endfunction
-
-command Asplit call SplitByColumnSize(80)
-
 " Easier navigation between split windows.
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
