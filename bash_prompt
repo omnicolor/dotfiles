@@ -194,9 +194,8 @@ function myprompt {
         if [ $dir != "/" ]; then
             branch=`echo $branch | sed -e "s#$dir##"`
         fi
-        EDITS=`svn st | wc -l | sed -e 's/ *//g'`
         colordir="${bold}${blue}$dir"
-        PS1="$gray($bold$orange$EDITS$reset $red$branch$gray) $colordir$reset\$ "
+        PS1="$gray($red$branch$gray) $colordir$reset\$ "
     else
         colordir="${bold}${blue}$(pwd)"
         PS1="$colordir$reset\$ "
