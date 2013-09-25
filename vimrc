@@ -5,7 +5,6 @@
 call pathogen#infect()
 
 syntax enable
-set t_co=256
 set background=dark
 
 " To install wombat:
