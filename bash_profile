@@ -25,5 +25,5 @@ fi
 
 # Soup up the prompt.
 if [ -f ~/.bash_prompt ]; then
-    source .bash_prompt
+    source ~/.bash_prompt
 fi
