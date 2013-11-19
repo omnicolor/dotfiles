@@ -1,5 +1,5 @@
 [alias]
-    ci = commit
+    ci = commit -S
     co = checkout
     # Diff last commit
     dlc = diff --cached HEAD^
