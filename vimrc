@@ -101,6 +101,9 @@ autocmd InsertLeave <buffer> se nopaste
 " Make F6 unit test the project.
 nnoremap <F6> :!phing test<CR>
 
+" Make F7 build the project
+nnoremap <F7> :!phing build<CR>
+
 " Prettier linewrap.
 set showbreak=↪
 
