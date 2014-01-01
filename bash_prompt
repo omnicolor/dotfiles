@@ -162,7 +162,7 @@ function myprompt {
     hostname=""
     if [ "$SSH_CONNECTION" ]; then
         # We're on a different system than normal, add the hostname.
-        hostname="$(hostname | cut -f1 -d'.') "
+        hostname="${cyan}$(hostname | cut -f1 -d'.') $reset"
     fi
 
     if [ $GIT -ne 0 ]; then
