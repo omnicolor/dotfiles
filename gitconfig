@@ -41,6 +41,3 @@
     default = current
 [push]
     default = tracking
-[user]
-    email = omni@digitaldarkness.com
-    name = Omni Adams
