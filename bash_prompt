@@ -40,7 +40,8 @@ bright='\[\e[39m\]'
 function short_pwd {
     if [ $GIT -ne 0 -o $SVN -ne 0 ]; then
         username=`whoami`
-        pwd=$(pwd | sed -e "s/\/$username//" | sed -e 's/\/home//' | sed -e 's/\/Users//')
+        pwd=$(pwd | sed -e "s/\/$username//" | sed -e 's/\/home//' | sed -e 's/\/Users//' | sed -e 's/var\///')
+#| sed -e 's/var\/www\///')
     else
         pwd=$(pwd | sed -e 's/ /_/g')
     fi
@@ -48,7 +49,7 @@ function short_pwd {
     rest=$(dirname $pwd)
     second=$(basename $rest)
     rest=$(dirname $rest)
-    if [ 'Sites' = $second -o 'code' = $second ]; then
+    if [ 'Sites' = $second -o 'code' = $second -o 'www' = $second ]; then
         first=$(basename $rest)
         rest=$(dirname $pwd)
         second=$(basename $rest)
@@ -56,11 +57,11 @@ function short_pwd {
     fi
     third=$(basename $rest)
     rest=$(dirname $rest)
-    if [ 'Sites' = $third -o 'code' = $third ]; then
+    if [ 'Sites' = $third -o 'code' = $third -o 'www' = $third ]; then
         second="/"
     fi
     fourth=$(basename $rest)
-    if [ 'Sites' = $fourth -o 'code' = $fourth ]; then
+    if [ 'Sites' = $fourth -o 'code' = $fourth -o 'www' = $fourth ]; then
         third="/"
     fi
 
