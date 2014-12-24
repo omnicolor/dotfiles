@@ -49,6 +49,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set nu
+set foldmethod=indent
 
 set ignorecase
 set smartcase
