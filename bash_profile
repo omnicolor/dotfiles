@@ -1,8 +1,5 @@
 # .bash_profile
 
-# Automated committing to git.
-alias pushit='git pull --rebase && phing test && git push'
-
 # Make ls pretty.
 alias ls='ls -F --color'
 
