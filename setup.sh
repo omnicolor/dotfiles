@@ -28,7 +28,7 @@ fi
 ln -s `pwd`/vimrc ~/.vimrc
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle
-curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
 mkdir ~/.vim/colors
 curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
