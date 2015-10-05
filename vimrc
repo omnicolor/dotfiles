@@ -99,11 +99,14 @@ set pastetoggle=<ins>
 nnoremap <silent> <ins> :setlocal paste!<CR>i
 autocmd InsertLeave <buffer> se nopaste
 
-" Make F6 unit test the project.
-nnoremap <F6> :!phing test<CR>
-
-" Make F7 build the project
-nnoremap <F7> :!phing build<CR>
+" Make F6 unit test the project and F7 build it
+if filereadable('Makefile')
+    nnoremap <F6> :!make test<CR>
+    nnoremap <F7> :!make<CR>
+elseif filereadable('build.xml')
+    nnoremap <F6> :!phing test<CR>
+    nnoremap <F7> :!phing build<CR>
+endif
 
 " Prettier linewrap.
 set showbreak=↪
