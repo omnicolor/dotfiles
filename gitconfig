@@ -1,17 +1,28 @@
 [alias]
+    # Sign commits and merges
     ci = commit -S
+    merge = merge -S
+
+    # Be lazy
     co = checkout
+    p = pull --rebase
+
+    # Cleaner and lazy git status
+    s = status -s
+
     # Diff last commit
     dlc = diff --cached HEAD^
+
+    # Get rid of any work
     fahqit = reset --hard HEAD
-    lasttag = describe --tags --abbrev=0
+
+    # Some pretty-ish logs
     le = log --oneline --decorate
     lg = log --oneline --decorate --graph
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ %cn\\ %C(magenta)%G?" --decorate
-    p = pull --rebase
-    s = status -s
-    st = status
+
+    # Count of commits by person
     who = !echo \"== Commits by Author:\\n`git shortlog -s -n`\\n\"
 [color]
     branch = auto
