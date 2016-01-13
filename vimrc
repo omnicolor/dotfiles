@@ -115,10 +115,6 @@ endif
 " Prettier linewrap.
 set showbreak=↪
 
-" Leader-L to show invisible characters.
-nnoremap <leader>L :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
-
 " Write as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
