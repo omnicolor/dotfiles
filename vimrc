@@ -68,8 +68,9 @@ inoremap jj <ESC>
 
 autocmd BufRead,BufNewFile * set formatoptions-=cro
 
-" ,l to lint a PHP file.
+" ,l to lint a file.
 :autocmd FileType php noremap <leader>l :w!<CR>:!clear;/usr/local/bin/php -l %<CR>
+:autocmd FileType javascript noremap <leader>l :w!<CR>:!clear;/usr/local/bin/gjslint %<CR>
 
 " Leader-space to clear highlighted search.
 nnoremap <leader><space> :noh<cr>
