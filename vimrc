@@ -57,6 +57,9 @@ set incsearch
 set showmatch
 set hlsearch
 
+" Open vertical splits to the right by default
+set splitright
+
 let mapleader = ","
 let maplocalleader = ","
 
