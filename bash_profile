@@ -1,5 +1,8 @@
 # .bash_profile
 
+# Warn before overwriting files.
+alias mv='mv -i'
+alias cp='cp -i'
 
 # Use vim whenever possible.
 export EDITOR=vim
