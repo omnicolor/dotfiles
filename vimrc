@@ -124,6 +124,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" Allow opening a tag in a vertical split with CTRL-\
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 " Read your local vim stuff.
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
