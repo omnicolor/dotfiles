@@ -131,3 +131,19 @@ map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
+" Set up for Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+autocmd BufNewFile,BufRead *.json set ft=json
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_scss_checkers = ['sassc']
+let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
+let g:syntastic_json_checkers = ['jshint', 'jsonlint']
+let g:syntastic_twig_twiglint_exec = 'php'
+let g:syntastic_twig_twiglint_exe = 'php /usr/local/bin/twig-lint'
