@@ -1,7 +1,5 @@
 # .bash_profile
 
-# Make ls pretty.
-alias ls='ls -F --color'
 
 # Use vim whenever possible.
 export EDITOR=vim
