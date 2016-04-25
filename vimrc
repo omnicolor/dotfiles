@@ -32,8 +32,13 @@ set smarttab
 
 set scrolloff=2
 set showmatch
+
 set textwidth=79
 set formatoptions=qrn1
+
+" Git commit messages should break at 72.
+autocmd Filetype gitcommit setlocal textwidth=72 formatoptions=cqt
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
 set mouse=a
 
@@ -96,6 +101,7 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$/
 " Highlight text past 80 characters.
 if exists('+colorcolumn')
     set colorcolumn=80
+    autocmd Filetype gitcommit setlocal colorcolumn=72
 endif
 
 " Make <ins> a nice paste format.
