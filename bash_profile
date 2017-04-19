@@ -25,3 +25,5 @@ fi
 if [ -f ~/.bash_prompt ]; then
     source ~/.bash_prompt
 fi
+
+#test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

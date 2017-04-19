@@ -34,3 +34,4 @@ mkdir ~/.vim/colors
 curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
 git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
