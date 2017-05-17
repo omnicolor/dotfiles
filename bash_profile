@@ -25,3 +25,5 @@ fi
 if [ -f ~/.bash_prompt ]; then
     source ~/.bash_prompt
 fi
+
+test -e "${HOME}/.git-completion.bash" && source "${HOME}/.git-completion.bash"
