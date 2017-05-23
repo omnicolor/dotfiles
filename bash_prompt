@@ -41,7 +41,6 @@ function short_pwd {
     if [ $GIT -ne 0 -o $SVN -ne 0 ]; then
         username=`whoami`
         pwd=$(pwd | sed -e "s/\/$username//" | sed -e 's/\/home//' | sed -e 's/\/Users//' | sed -e 's/var\///')
-#| sed -e 's/var\/www\///')
     else
         pwd=$(pwd | sed -e 's/ /_/g')
     fi
