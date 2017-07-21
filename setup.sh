@@ -27,11 +27,19 @@ then
 fi
 ln -s `pwd`/vimrc ~/.vimrc
 
-mkdir -p ~/.vim/autoload ~/.vim/bundle
+mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vim/colors
+
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
-mkdir ~/.vim/colors
 curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
-git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
-git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
 curl -so ~/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+
+if [ -x "$(command -v git)" ]; then
+    git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
+    git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
+    git clone git://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+else
+    curl -Lso ~/.vim/bundle/vim-colors-solarized.zip https://github.com/altercation/vim-colors-solarized/archive/master.zip
+    curl -Lso ~/.vim/bundle/syntastic.zip https://github.com/vim-syntastic/syntastic/archive/master.zip
+    unzip ~/.vim/bundle/vim-colors-solarized.zip -d ~/.vim/bundle
+    unzip ~/.vim/bundle/syntastic.zip -d ~/.vim/bundle
+fi
