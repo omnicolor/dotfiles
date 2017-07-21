@@ -149,7 +149,7 @@ let g:syntastic_scss_checkers = ['sassc']
 " npm install --global eslint-config-standard eslint eslint-plugin-node \
 " eslint-plugin-promise eslint-plugin-standard eslint-plugin-import
 " To install jshint: npm install -g jshint
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 " To install jsonlint: npm install -g jsonlint
 let g:syntastic_json_checkers = ['jshint', 'jsonlint']
 let g:syntastic_twig_twiglint_exec = 'php'
