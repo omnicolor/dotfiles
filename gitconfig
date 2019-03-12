@@ -24,6 +24,10 @@
 
     # Count of commits by person
     who = !echo \"== Commits by Author:\\n`git shortlog -s -n`\\n\"
+
+    # Quick way of hiding changes from git status
+    hide = update-index --assume-unchanged
+    unhide = update-index --no-assume-unchanged
 [color]
     branch = auto
     diff = auto
