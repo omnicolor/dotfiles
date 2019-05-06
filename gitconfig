@@ -28,6 +28,7 @@
     # Quick way of hiding changes from git status
     hide = update-index --assume-unchanged
     unhide = update-index --no-assume-unchanged
+
 [color]
     branch = auto
     diff = auto
@@ -35,31 +36,41 @@
     interactive = auto
     ui = true
     pager = true
+
 [color "branch"]
     current = red reverse
     local = blue
     remote = green
+
 [color "diff"]
     frag = magenta
     meta = yellow
     new = green
     old = red
+
 [color "status"]
     added = yellow
     changed = green
     untracked = cyan
+
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = less
+
 [pull]
     default = current
+
 [push]
     default = tracking
+
 [mergetool "gvimdiff3"]
-	cmd = gvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+    cmd = gvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+
 [mergetool "vimdiff3"]
-	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+    cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+
 [merge]
-	tool = vimdiff3
+    tool = vimdiff3
+    mergeoptions = --no-ff -S
