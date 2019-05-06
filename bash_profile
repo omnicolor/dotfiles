@@ -6,7 +6,6 @@ alias cp='cp -i'
 
 # Use vim whenever possible.
 export EDITOR=vim
-set -i vim
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL=ignoredups:ignorespace
