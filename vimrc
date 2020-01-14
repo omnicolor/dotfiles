@@ -100,6 +100,9 @@ if exists('+colorcolumn')
     autocmd Filetype gitcommit setlocal colorcolumn=72
 endif
 
+" Don't insert two spaces after period when joining lines.
+set nojoinspaces
+
 " Make <ins> a nice paste format.
 set pastetoggle=<ins>
 nnoremap <silent> <ins> :setlocal paste!<CR>i
