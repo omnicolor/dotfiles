@@ -134,23 +134,75 @@ if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
 
-" Set up for Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
 
-autocmd BufNewFile,BufRead *.json set ft=json
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_scss_checkers = ['sassc']
-" To install eslint:
-" npm install --global eslint-config-standard eslint eslint-plugin-node \
-" eslint-plugin-promise eslint-plugin-standard eslint-plugin-import
-" To install jshint: npm install -g jshint
-let g:syntastic_javascript_checkers = ['eslint']
-" To install jsonlint: npm install -g jsonlint
-let g:syntastic_json_checkers = ['jshint', 'jsonlint']
-let g:syntastic_twig_twiglint_exec = 'php'
-let g:syntastic_twig_twiglint_exe = 'php /usr/local/bin/twig-lint'
+" /Lightline
+" ALE Syntax Highlighting
+let g:ale_lint_on_text_changed = 0
+let g:ale_linters = {
+\    'javascript': ['eslint'],
+\    'php': ['phpstan', 'phpcbf', 'phpmd', 'phpcs'],
+\}
+let g:ale_php_phpcs_standard = 'PSR12'
+let g:ale_php_phpcs_use_global = 1
+let g:ale_php_phpmd_ruleset = 'codesize,design,unusedcode,naming'
+
+" ctrl-j/k to jump between linter errors
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_php_phpstan_use_global = 1
+let g:ale_php_phpstan_configuration = '/Users/omni/.phpstan/phpstan.neon'
+
+" use lightline-buffer in lightline
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ 'component_function': {
+\   'gitbranch': 'fugitive#head'
+\ },
+\ }
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+augroup LightLineOnALE
+  autocmd!
+  autocmd User ALEFixPre   call s:MaybeUpdateLightline()
+  autocmd User ALEFixPost  call s:MaybeUpdateLightline()
+  autocmd User ALELintPre  call s:MaybeUpdateLightline()
+  autocmd User ALELintPost call s:MaybeUpdateLightline()
+augroup end
+
+set timeoutlen=1000 ttimeoutlen=0
