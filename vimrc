@@ -145,8 +145,10 @@ function! s:MaybeUpdateLightline()
   end
 endfunction
 
-" /Lightline
-" ALE Syntax Highlighting
+" Install Lighline with:
+" git clone https://github.com/itchyny/lightline.vim ~/.vim/bundle/lightline.vim
+" Install ALE Syntax Highlighting with:
+" git clone https://github.com/dense-analysis/ale.git ~/.vim/bundle/ale.git
 let g:ale_lint_on_text_changed = 0
 let g:ale_linters = {
 \    'javascript': ['eslint'],
