@@ -74,3 +74,6 @@
 [merge]
     tool = vimdiff3
     mergeoptions = --no-ff -S
+
+[commit]
+	gpgsign = true
