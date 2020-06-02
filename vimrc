@@ -1,15 +1,15 @@
 " To install Pathogen:
 " mkdir -p ~/.vim/autoload ~/.vim/bundle; \
 " curl -so ~/.vim/autoload/pathogen.vim \
-"    https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
+"    https://raw.githubusercontent.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 call pathogen#infect()
 
 syntax enable
 set background=dark
 
 " To install wombat:
-" mkdir ~/.vim/colors
-" curl -so ~/.vim/colors/wombat.vim http://www.vim.org/scripts/download_script.php?src_id=6657
+" mkdir -p ~/.vim/colors
+" curl -so ~/.vim/colors/wombat.vim https://www.vim.org/scripts/download_script.php?src_id=6657
 if filereadable(glob("~/.vim/colors/wombat.vim"))
     colorscheme wombat
 endif
