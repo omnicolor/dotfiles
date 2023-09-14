@@ -134,8 +134,6 @@ function myprompt {
             detached=$(git status | head -1 | grep detached | sed 's/HEAD detached at //')
             if [ $detached ]; then
                 branch=" $detached"
-            elif [ $git_branch = "refs/heads/master" ]; then
-                branch=""
             else
                 branch=" $bold$red$(basename $git_branch)$reset"
             fi
