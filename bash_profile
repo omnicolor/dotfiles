@@ -4,6 +4,9 @@
 alias mv='mv -i'
 alias cp='cp -i'
 
+# Pull remote git changes, clean up.
+alias clean='git p && git prune && git gc && git remote prune origin'
+
 # Use vim whenever possible.
 export EDITOR=vim
 
