@@ -53,17 +53,23 @@
     changed = green
     untracked = cyan
 
+[commit]
+	gpgsign = true
+
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = less
+	autocrlf = input
+	eol = lf
 
-[pull]
-    default = current
+[init]
+    defaultBranch = main
 
-[push]
-    default = tracking
+[merge]
+    tool = vimdiff3
+    mergeoptions = --no-ff -S
 
 [mergetool "gvimdiff3"]
     cmd = gvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
@@ -71,9 +77,8 @@
 [mergetool "vimdiff3"]
     cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 
-[merge]
-    tool = vimdiff3
-    mergeoptions = --no-ff -S
+[pull]
+    default = current
 
-[commit]
-	gpgsign = true
+[push]
+    default = tracking
