@@ -42,3 +42,6 @@ git clone git@github.com:tpope/vim-commentary.git ~/.vim/pack/tpope/start
 cd ~/.vim/pack/tpope/start && vim -u NONE -c "helptags commentary/doc" -c q && cd -
 git clone git@github.com:tpope/vim-surround.git ~/.vim/pack/tpope/start
 cd ~/.vim/pack/tpope/start && vim -u NONE -c "helptags surround/doc" -c q && cd -
+
+git clone git@github.com:dense-analysis/ale ~/.vim/bundle/ale
+cp -r ftplugins ~/.vim/
