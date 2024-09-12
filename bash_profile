@@ -18,7 +18,7 @@ export HISTFILESIZE=2000
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
-# Get the aliases and functions.
+# Get local aliases and functions.
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
