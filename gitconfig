@@ -32,10 +32,10 @@
 [color]
     branch = auto
     diff = auto
-    status = auto
     interactive = auto
-    ui = true
     pager = true
+    status = auto
+    ui = true
 
 [color "branch"]
     current = red reverse
@@ -54,22 +54,22 @@
     untracked = cyan
 
 [commit]
-	gpgsign = true
+    gpgsign = true
 
 [core]
+    autocrlf = true
+    eol = lf
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
-    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = less
-	autocrlf = input
-	eol = lf
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [init]
     defaultBranch = main
 
 [merge]
-    tool = vimdiff3
     mergeoptions = --no-ff -S
+    tool = vimdiff3
 
 [mergetool "gvimdiff3"]
     cmd = gvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
