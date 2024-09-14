@@ -36,12 +36,11 @@ curl -Lso ~/.git-completion.bash https://raw.githubusercontent.com/git/git/maste
 curl -Lso ~/.vim/colors/wombat.vim https://www.vim.org/scripts/download_script.php?src_id=6657
 curl -Lso ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 git clone git@github.com:tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
-git clone git@github.com/tpope/vim-rhubarb.git ~/.vim/bundle/vim-rhubarb
-git clone https://github.com/editorconfig/editorconfig-vim.git ~/.vim/bundle/editorconfig-vim
+git clone git@github.com:tpope/vim-rhubarb.git ~/.vim/bundle/vim-rhubarb
+git clone git@github.com:editorconfig/editorconfig-vim.git ~/.vim/bundle/editorconfig-vim
 git clone git@github.com:tpope/vim-commentary.git ~/.vim/pack/tpope/start
-cd ~/.vim/pack/tpope/start && vim -u NONE -c "helptags commentary/doc" -c q && cd -
-git clone git@github.com:tpope/vim-surround.git ~/.vim/pack/tpope/start
-cd ~/.vim/pack/tpope/start && vim -u NONE -c "helptags surround/doc" -c q && cd -
-
 git clone git@github.com:dense-analysis/ale ~/.vim/bundle/ale
-cp -r ftplugins ~/.vim/
+git clone git@github.com:tpope/vim-surround.git ~/.vim/pack/tpope/start
+cd ~/.vim/pack/tpope/start && vim -u NONE -c "helptags commentary/doc" -c q && cd -
+cd ~/.vim/pack/tpope/start && vim -u NONE -c "helptags surround/doc" -c q && cd -
+cp -r ftplugin ~/.vim/
