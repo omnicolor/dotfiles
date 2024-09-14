@@ -56,11 +56,6 @@ set hlsearch
 
 " Open vertical splits to the right by default
 set splitright
-" Easier navigation between split windows.
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
 " Allow opening a tag in a vertical split with CTRL-\
 map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
