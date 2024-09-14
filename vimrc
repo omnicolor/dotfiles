@@ -133,8 +133,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <silent> <F2> :FZF<CR>
 set rtp+=/usr/local/bin/fzf
 
-packadd lsp
-
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
