@@ -105,11 +105,6 @@ set pastetoggle=<ins>
 nnoremap <silent> <ins> :setlocal paste!<CR>i
 autocmd InsertLeave <buffer> se nopaste
 
-" Make F6 unit test the project and F7 build it
-if filereadable('Makefile')
-    nnoremap <F6> :!make test<CR>
-    nnoremap <F7> :!make<CR>
-endif
 let test#strategy = "vimterminal"
 let test#vim#term_position = "below"
 let test#php#phpunit#executable = "./vendor/bin/phpunit"
