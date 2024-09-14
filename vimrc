@@ -110,6 +110,13 @@ nmap <silent> <leader>l :TestLast<CR>
 " Write as root.
 cnoremap w!! w !sudo tee % >/dev/null
 
+" Set up Ctags and taglist.
+set tags=./tags;$HOME
+nnoremap <silent> <F8> :TlistToggle<CR>
+
+" Allow opening a tag in a vertical split with CTRL-\.
+map <C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 " Read your local vim stuff.
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
@@ -122,3 +129,13 @@ let g:ale_virtualtext_cursor = 'disabled'
 " ctrl-j/k to jump between linter errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+nnoremap <silent> <F2> :FZF<CR>
+set rtp+=/usr/local/bin/fzf
+
+packadd lsp
+
+call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+call plug#end()
